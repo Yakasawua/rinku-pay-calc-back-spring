@@ -5,6 +5,9 @@ FROM openjdk:17-alpine
 ENV APP_NAME=rinku
 ENV APP_HOME=/opt/${APP_NAME}
 
+# Install Maven
+RUN apk add --no-cache maven
+
 # Create the application directory
 RUN mkdir -p ${APP_HOME}
 
@@ -15,4 +18,4 @@ COPY . ${APP_HOME}
 WORKDIR ${APP_HOME}
 
 # Start the application on the Tomcat embedded server
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["mvn", "spring-boot:run"]
